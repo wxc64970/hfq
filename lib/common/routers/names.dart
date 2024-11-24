@@ -1,0 +1,34 @@
+class RouteNames {
+  static const main = '/main';
+  static const fast = '/fast';
+  static const large = '/large';
+  static const application = '/application';
+  static const frameNotfound = '/frame_notfound';
+  static const frameSignIn = '/frame_sign_in';
+  static const webviewPage = '/webview';
+  static const realname = '/realname';
+  static const setting = '/setting';
+  static const facesuccess = '/facesuccess';
+  static const basicinformation = '/basicinformation';
+  static const basicinformation2 = '/basicinformation2';
+  static const reviewloading = '/reviewloading';
+  static const reviewsuccess = '/reviewsuccess';
+  static const reviewfail = '/reviewfail';
+  static const confirmationloan = '/confirmationloan';
+  static const repaymentMain = '/repaymentMain';
+  static const repaymentInfo = '/repaymentInfo';
+  static const repaymentMake = '/repaymentMake';
+  static const repaymentSuccess = '/repaymentSuccess';
+  static const bindinBankCard = '/bindinBankCard';
+  static const comfirmationLoad = '/comfirmationLoad';
+  static const comfirmationSuccess = '/comfirmationSuccess';
+  static const comfiremationMonthlyRepaymentDue = '/comfiremationMonthlyRepaymentDue';
+  static const fastApply = '/fastApply';
+  static const largeApply = '/largeApply';
+  static const larageApplyEndPage = '/larageApplyEndPage';
+  static const contact = "/contact";
+  static const htmlpage = "/htmlpage";
+  static const cusWebViewpage = '/cusWebViewPate';
+  static const loanbasicinformation = "/loanbasicinformation";
+  static const reviewloading2 = '/reviewloading2';
+}
