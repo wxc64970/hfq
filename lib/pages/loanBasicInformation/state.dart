@@ -14,7 +14,7 @@ class LoanbasicinformationState {
       "title": "职业身份",
       "field": "professional",
       "isExpanded": true.obs,
-      "isTips": 0,
+      "isTips": 2,
       "list": ["上班族", "公务员/事业单位", "私营业主", "个体户", "其他"]
     },
     {

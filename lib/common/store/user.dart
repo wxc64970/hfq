@@ -15,8 +15,7 @@ class UserStore extends GetxController {
   String get profile => _profile.value;
   bool get hasToken => token.isNotEmpty;
 
-  final _userStatus = 1
-      .obs; //1未申请额度 2正在申请额度  3额度审核被拒 4额度审核被拒（渠道用户）5未发起借款 6借款审核中 7借款成功 8借款被拒 9未知状态
+  final _userStatus = 1.obs; //1未申请额度 2正在申请额度  3额度审核被拒 4额度审核被拒（渠道用户）5未发起借款 6借款审核中 7借款成功 8借款被拒 9未知状态
   int get userStatus => _userStatus.value;
 
   @override
@@ -53,6 +52,12 @@ class UserStore extends GetxController {
       // _userStatus.value = 4;
       // StorageService.to.setInt(STORAGE_USER_STATUS_KEY, 4);
     }
+  }
+
+  //设置用户状态
+  Future<void> setUserStatus(int status) async {
+    _userStatus.value = status;
+    StorageService.to.setInt(STORAGE_USER_STATUS_KEY, status);
   }
 
   // 退出登录

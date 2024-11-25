@@ -85,8 +85,8 @@ class HomeController extends GetxController {
     int userStatus = UserStore.to.userStatus;
     if (true) {
       print(11111);
-      // Get.toNamed(RouteNames.loanbasicinformation);
-      Get.offNamed(RouteNames.reviewloading2);
+      Get.toNamed(RouteNames.loanbasicinformation);
+      // Get.offNamed(RouteNames.reviewloading2);
       return;
     }
     switch (userStatus) {

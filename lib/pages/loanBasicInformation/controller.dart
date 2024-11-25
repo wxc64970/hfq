@@ -23,16 +23,11 @@ class LoanbasicinformationController extends GetxController {
 
   onWillPops() {
     //
-    Get.back();
   }
 
   handleAddress() async {
     handleUnfocus();
-    var result = await CityPickers.showCityPicker(
-        context: Get.context!,
-        height: kSize600,
-        locationCode: state.address.cityId ?? "110000",
-        showType: ShowType.pc);
+    var result = await CityPickers.showCityPicker(context: Get.context!, height: kSize600, locationCode: state.address.cityId ?? "110000", showType: ShowType.pc);
     if (result != null) {
       state.address = result;
       print(state.address.cityId);
@@ -41,36 +36,18 @@ class LoanbasicinformationController extends GetxController {
 
   //立即申请
   handleApply() async {
-    Map verificationParams = {
-      "idNum": idCardController.text.trim(),
-      "name": nameController.text.trim()
-    };
+    Map verificationParams = {"idNum": idCardController.text.trim(), "name": nameController.text.trim()};
     print(verificationParams);
     Loading.show();
-    var res =
-        await BasicInformationAPI.getIdVerification(params: verificationParams);
+    var res = await BasicInformationAPI.getIdVerification(params: verificationParams);
     if (res['code'] == 0) {
-      int professionalData = state.formDatas[0]['list']
-              .indexWhere((item) => item == state.selectDatas['professional']) +
-          1;
-      int zhiMaData = state.formDatas[1]['list']
-              .indexWhere((item) => item == state.selectDatas['zhiMa']) +
-          1;
-      int hasData = state.formDatas[2]['list']
-              .indexWhere((item) => item == state.selectDatas['has']) +
-          1;
-      int fundData = state.formDatas[3]['list']
-              .indexWhere((item) => item == state.selectDatas['fund']) +
-          1;
-      int housePropertyData = state.formDatas[4]['list'].indexWhere(
-              (item) => item == state.selectDatas['houseProperty']) +
-          1;
-      int carPropertyData = state.formDatas[5]['list']
-              .indexWhere((item) => item == state.selectDatas['carProperty']) +
-          1;
-      int bdStatusData = state.formDatas[6]['list']
-              .indexWhere((item) => item == state.selectDatas['bdStatus']) +
-          1;
+      int professionalData = state.formDatas[0]['list'].indexWhere((item) => item == state.selectDatas['professional']) + 1;
+      int zhiMaData = state.formDatas[1]['list'].indexWhere((item) => item == state.selectDatas['zhiMa']) + 1;
+      int hasData = state.formDatas[2]['list'].indexWhere((item) => item == state.selectDatas['has']) + 1;
+      int fundData = state.formDatas[3]['list'].indexWhere((item) => item == state.selectDatas['fund']) + 1;
+      int housePropertyData = state.formDatas[4]['list'].indexWhere((item) => item == state.selectDatas['houseProperty']) + 1;
+      int carPropertyData = state.formDatas[5]['list'].indexWhere((item) => item == state.selectDatas['carProperty']) + 1;
+      int bdStatusData = state.formDatas[6]['list'].indexWhere((item) => item == state.selectDatas['bdStatus']) + 1;
       Map params = {
         "professional": professionalData,
         "zhiMa": zhiMaData,
@@ -80,14 +57,15 @@ class LoanbasicinformationController extends GetxController {
         "carProperty": carPropertyData,
         "bdStatus": bdStatusData,
         "name": nameController.text.trim(),
-        "idNum": DESEncrypt.encryptByDES(idCardController.text.trim()),
+        "idNum": idCardController.text.trim(),
         "cityId": state.address.cityId,
-        "loan": 20000
+        "loan": "25000"
       };
+
       print(params);
+      // print(DESEncrypt.decryptByDES(params['idNum'], "idCard"));
       Get.offNamed(RouteNames.reviewloading2);
-      var res2 =
-          await BasicInformationAPI.getInformationSubmission(params: params);
+      var res2 = await BasicInformationAPI.getInformationSubmission(params: params);
       if (res2['code'] == 0) {
         //
       }
@@ -107,24 +85,21 @@ class LoanbasicinformationController extends GetxController {
       CityPickers.metaCities.forEach((outerKey, outerValue) {
         if (outerValue is Map<String, dynamic>) {
           outerValue.forEach((innerKey, innerValue) {
-            if (innerValue is Map<String, dynamic> &&
-                innerValue['name'] == res.city) {
+            if (innerValue is Map<String, dynamic> && innerValue['name'] == res.city) {
               print(innerKey);
               cityCode = innerKey;
             }
           });
         }
       });
-      state.address = Result(
-          cityId: cityCode, provinceName: res.province, cityName: res.city);
+      state.address = Result(cityId: cityCode, provinceName: res.province, cityName: res.city);
     }
     SmartDialog.dismiss(status: SmartStatus.loading);
     update();
   }
 
   onChanged1(value) {
-    if (nameController.text.trim().isNotEmpty &&
-        idCardController.text.trim().isNotEmpty) {
+    if (nameController.text.trim().isNotEmpty && idCardController.text.trim().isNotEmpty) {
       state.isShow = true;
     } else {
       state.isShow = false;
@@ -133,8 +108,7 @@ class LoanbasicinformationController extends GetxController {
   }
 
   onChanged2(value) {
-    if (nameController.text.trim().isNotEmpty &&
-        idCardController.text.trim().isNotEmpty) {
+    if (nameController.text.trim().isNotEmpty && idCardController.text.trim().isNotEmpty) {
       state.isShow = true;
     } else {
       state.isShow = false;

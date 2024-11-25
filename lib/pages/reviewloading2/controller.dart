@@ -23,11 +23,11 @@ class Reviewloading2Controller extends GetxController {
     await HOMELSAPI.fastLoanCrashLib();
     var largeLoan = await HOMELSAPI.getListDataWithLargeLoan();
     if (largeLoan.isNotEmpty) {
-      Get.toNamed(RouteNames.largeApply, arguments: {"data": largeLoan[0]});
+      Get.offNamed(RouteNames.largeApply, arguments: {"data": largeLoan[0]});
     } else {
       var fastLoan = await HOMELSAPI.getListDataWithFastLoan(needAuth: true);
       if (fastLoan.isNotEmpty) {
-        Get.toNamed(RouteNames.fastApply, arguments: {"data": fastLoan[0]});
+        Get.offNamed(RouteNames.fastApply, arguments: {"data": fastLoan[0]});
       } else {
         //
       }
